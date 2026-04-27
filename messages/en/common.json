@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "home": "Home",
+    "shop": "Shop",
+    "collections": "Collections",
+    "about": "About",
+    "contact": "Contact",
+    "cart": "Cart",
+    "search": "Search...",
+    "allProducts": "All Products",
+    "rugs": "Rugs",
+    "pillows": "Pillows",
+    "candles": "Candles",
+    "ceramic": "Ceramic",
+    "arganOil": "Argan Oil",
+    "brassLamps": "Brass Lamps",
+    "customOrders": "Custom Orders",
+    "company": "Company",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "announcement": "Fair Trade Certified by Label STEP | Free Worldwide Shipping",
+    "footerDescription": "Authentic handmade Moroccan home goods, crafted by 3rd generation Berber artisans. Rugs, pillows, candles, ceramics, argan oil & brass lamps."
+  },
+  "home": {
+    "heroTitle": "Authentic Moroccan Home & Living",
+    "heroSubtitle": "Transform your space with handcrafted Moroccan treasures — from artisan rugs and pillows to scented candles, ceramics, argan oil products, and brass lamps.",
+    "shopNow": "Shop Now",
+    "viewCollections": "View Collections",
+    "featuredTitle": "Featured Products",
+    "featuredSubtitle": "Discover our handpicked selection of authentic Moroccan craftsmanship, each piece unique and crafted with care.",
+    "viewAll": "View All Products",
+    "categoriesTitle": "Shop by Category",
+    "categoriesSubtitle": "Explore our curated collections of Moroccan artisan goods",
+    "categories": {
+      "rugs": "Rugs",
+      "pillows": "Pillows",
+      "candles": "Candles",
+      "ceramic": "Ceramic",
+      "arganOil": "Argan Oil",
+      "brassLamps": "Brass Lamps"
+    },
+    "whyTitle": "Why Choose WEBERBER?",
+    "whyDescription": "For over three generations, our family has been crafting the finest Moroccan home goods in the Atlas Mountains. Each piece tells a story of ancient Berber traditions, skilled hands, and patterns passed down through centuries.",
+    "handmade": "100% Handmade",
+    "handmadeDesc": "Traditional techniques",
+    "authentic": "Atlas Mountains",
+    "authenticDesc": "Authentic origin",
+    "fairTrade": "Fair Trade",
+    "fairTradeDesc": "Label STEP certified",
+    "natural": "Natural Materials",
+    "naturalDesc": "Organic & sustainable",
+    "forDesigners": "For Interior Designers",
+    "customTitle": "Custom Design Service",
+    "customDescription": "Working on a special project? We offer bespoke design services for rugs, ceramics, and more. Choose your size, colors, and patterns.",
+    "customSize": "Custom sizes up to 16x20 ft",
+    "colorMatch": "Color matching available",
+    "tradePricing": "Trade pricing for professionals",
+    "inquire": "Inquire Now",
+    "reviewsTitle": "What Our Customers Say",
+    "reviewsSubtitle": "Join 934+ happy customers who transformed their homes with our products",
+    "experienceMorocco": "Experience Morocco",
+    "visitTitle": "Visit Our Workshop",
+    "visitDescription": "We invite you to visit our workshop in the Atlas Mountains and witness the ancient art of Moroccan craftsmanship firsthand.",
+    "getInTouch": "Get in Touch",
+    "contactUs": "Contact Us"
+  },
+  "about": {
+    "heroTitle": "Our Story",
+    "heroSubtitle": "Three generations of Berber craftsmanship from the Atlas Mountains"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Have questions about our products? Need help choosing the perfect piece for your space? We're here to help."
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "tryAgain": "Try Again"
+  }
+}
