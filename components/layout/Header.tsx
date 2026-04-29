@@ -35,6 +35,7 @@ export default function Header({ locale: _locale }: HeaderProps) {
     { href: '/', label: t('home') },
     { href: '/shop', label: t('shop') },
     { href: '/collections', label: t('collections') },
+    { href: '/custom', label: t('customOrders') },
     { href: '/about', label: t('about') },
     { href: '/contact', label: t('contact') },
   ];

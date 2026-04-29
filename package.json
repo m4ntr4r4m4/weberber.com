@@ -9,6 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@shopify/app": "^3.58.2",
+    "@shopify/cli": "^3.94.1",
     "@stripe/react-stripe-js": "^6.2.0",
     "@stripe/stripe-js": "^9.3.1",
     "clsx": "^2.1.1",
