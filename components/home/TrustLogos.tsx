@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 const logos = [
   {
@@ -29,17 +30,44 @@ const logos = [
 ];
 
 export default function TrustLogos() {
+  const t = useTranslations('trust');
   return (
-    <section className="py-12 md:py-16 border-b border-gray-100">
-      <div className="container mx-auto px-4">
-        <p className="text-center text-xs text-gray-500 mb-8 uppercase tracking-widest">
-          Featured & Certified By
+    <section
+      style={{
+        padding: '72px 40px',
+        background: 'var(--bg-warm, #fafaf7)',
+        borderTop: '1px solid rgba(0,0,0,0.04)',
+        borderBottom: '1px solid rgba(0,0,0,0.04)',
+      }}
+    >
+      <div style={{ maxWidth: 'var(--container)', margin: '0 auto' }}>
+        <p
+          style={{
+            textAlign: 'center',
+            fontSize: 10,
+            letterSpacing: '0.34em',
+            color: 'var(--fg-3)',
+            textTransform: 'uppercase',
+            marginBottom: 44,
+            fontFamily: 'var(--font-sans)',
+          }}
+        >
+          {t('asFeaturedIn')}
         </p>
-        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: 40,
+          }}
+        >
           {logos.map((logo) => (
             <div
               key={logo.title}
-              className="relative w-24 h-24 md:w-32 md:h-32 grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+              className="trust-logo-item"
+              style={{ position: 'relative' }}
               title={logo.title}
             >
               <Image
@@ -47,7 +75,7 @@ export default function TrustLogos() {
                 alt={logo.alt}
                 fill
                 className="object-contain"
-                sizes="(max-width: 768px) 96px, 128px"
+                sizes="80px"
               />
             </div>
           ))}

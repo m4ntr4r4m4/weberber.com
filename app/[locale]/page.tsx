@@ -11,280 +11,378 @@ interface Props {
   params: Promise<{ locale: string }>;
 }
 
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'home' });
+  return {
+    title: t('metaTitle'),
+    description: t('metaDescription'),
+  };
+}
+
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'home' });
 
   const categories = [
-    { name: t('categories.rugs') || 'Rugs', slug: 'rugs', img: 'https://images.unsplash.com/photo-1600166898405-da9535204843?auto=format&fit=crop&q=80' },
-    { name: t('categories.pillows') || 'Pillows', slug: 'pillows', img: 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&q=80' },
-    { name: t('categories.candles') || 'Candles', slug: 'candles', img: 'https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&q=80' },
-    { name: t('categories.ceramic') || 'Ceramic', slug: 'ceramic', img: 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&q=80' },
-    { name: t('categories.arganOil') || 'Argan Oil', slug: 'argan-oil', img: 'https://images.unsplash.com/photo-1608248593842-83b333792044?auto=format&fit=crop&q=80' },
-    { name: t('categories.brassLamps') || 'Brass Lamps', slug: 'brass-lamps', img: 'https://images.unsplash.com/photo-1540981493580-8ea1113e9958?auto=format&fit=crop&q=80' }
+    {
+      name: t('categories.rugsName'),
+      sub: t('categories.rugsSub'),
+      slug: 'rugs',
+      img: 'https://admin.moroccan-carpet.com/wp-content/uploads/2024/08/DSC4382-1-edited.jpg',
+      span2: true,
+    },
+    {
+      name: t('categories.pillowsName'),
+      sub: t('categories.pillowsSub'),
+      slug: 'pillows',
+      img: 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&q=80',
+      span2: false,
+    },
+    {
+      name: t('categories.ceramicName'),
+      sub: t('categories.ceramicSub'),
+      slug: 'ceramic',
+      img: 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&q=80',
+      span2: false,
+    },
+    {
+      name: t('categories.candlesName'),
+      sub: t('categories.candlesSub'),
+      slug: 'candles',
+      img: 'https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&q=80',
+      span2: false,
+    },
+    {
+      name: t('categories.brassLampsName'),
+      sub: t('categories.brassLampsSub'),
+      slug: 'brass-lamps',
+      img: 'https://admin.moroccan-carpet.com/wp-content/uploads/2025/07/DSC_7333-1-1120x800-1.jpg',
+      span2: false,
+    },
+  ];
+
+  const features = [
+    { num: '01', title: t('features.handKnottedTitle'), desc: t('features.handKnottedDesc') },
+    { num: '02', title: t('features.naturalDyesTitle'), desc: t('features.naturalDyesDesc') },
+    { num: '03', title: t('features.labelStepTitle'), desc: t('features.labelStepDesc') },
+    { num: '04', title: t('features.lifetimeCareTitle'), desc: t('features.lifetimeCareDesc') },
+  ];
+
+  const visitRows: [string, string][] = [
+    [t('visitAtelierLabel'), t('visitAtelierValue')],
+    [t('visitMailLabel'), t('visitMailValue')],
+    [t('visitVoiceLabel'), t('visitVoiceValue')],
+    [t('visitHoursLabel'), t('visitHoursValue')],
   ];
 
   return (
     <div>
-      {/* Hero Section */}
-      <section className="relative h-[85vh] min-h-[600px] flex items-center">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="https://admin.moroccan-carpet.com/wp-content/uploads/2024/08/DSC4382-1-edited.jpg"
-            alt="Authentic Moroccan home goods"
-            fill
-            className="object-cover"
-            priority
-          />
+      {/* ── HERO ─────────────────────────────────────────────────────── */}
+      <section style={{ position: 'relative', height: '92vh', minHeight: 720, overflow: 'hidden', background: '#0d0c0a' }}>
+        <Image
+          src="https://admin.moroccan-carpet.com/wp-content/uploads/2024/08/DSC4382-1-edited.jpg"
+          alt={t('heroTitleLine2')}
+          fill
+          className="object-cover hero-kenburns"
+          style={{ opacity: 0.82 }}
+          priority
+          sizes="100vw"
+        />
+        {/* gradient vignette */}
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(13,12,10,.55) 0%, rgba(13,12,10,.05) 35%, rgba(13,12,10,0) 60%, rgba(13,12,10,.75) 100%)' }} />
+
+        {/* corner ornaments */}
+        <div style={{ position: 'absolute', left: 40, top: 40, color: 'rgba(255,255,255,.5)', fontSize: 11, letterSpacing: '.28em', textTransform: 'uppercase', fontFamily: 'var(--font-sans)' }}>
+          {t('heroBadgeLeft')}
+        </div>
+        <div style={{ position: 'absolute', right: 40, top: 40, color: 'rgba(255,255,255,.5)', fontSize: 11, letterSpacing: '.28em', textTransform: 'uppercase', fontFamily: 'var(--font-sans)' }}>
+          {t('heroBadgeRight')}
         </div>
 
-        {/* Text Band with Opacity */}
-        <div className="absolute inset-0 flex items-center z-10">
-          <div className="w-full bg-black/60 py-16 md:py-20">
-            <div className="container mx-auto px-4">
-              <div className="max-w-3xl mx-auto text-center text-white">
-                <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6">
-                  {t('heroTitle')}
-                </h1>
-                <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
-                  {t('heroSubtitle')}
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link
-                    href="/shop"
-                    className="bg-primary text-white px-8 py-4 rounded hover:bg-primary-600 transition-colors font-medium"
-                  >
-                    {t('shopNow')}
-                  </Link>
-                  <Link
-                    href="/collections"
-                    className="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded hover:bg-white/20 transition-colors font-medium border border-white/30"
-                  >
-                    {t('viewCollections')}
-                  </Link>
-                </div>
-              </div>
+        {/* copy block — bottom-left */}
+        <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '0 40px 96px', maxWidth: 1280, margin: '0 auto', left: 0, right: 0 }}>
+          <div style={{ maxWidth: 760 }}>
+            <div style={{ color: 'rgba(255,255,255,.7)', fontSize: 11, letterSpacing: '.34em', textTransform: 'uppercase', marginBottom: 28, display: 'flex', alignItems: 'center', gap: 14, fontFamily: 'var(--font-sans)' }}>
+              <span style={{ width: 36, height: 1, background: 'rgba(255,255,255,.5)', display: 'inline-block' }} />
+              {t('heroEyebrow')}
+            </div>
+            <h1 style={{ fontFamily: 'var(--font-serif)', fontWeight: 400, fontStyle: 'italic', color: '#fff', fontSize: 'clamp(56px, 8vw, 112px)', lineHeight: 1.02, letterSpacing: '-0.015em', margin: 0 }}>
+              {t('heroTitleLine1')}<br />
+              <span style={{ fontStyle: 'normal', fontWeight: 500 }}>{t('heroTitleLine2')}</span>
+            </h1>
+            <p style={{ color: 'rgba(255,255,255,.78)', fontSize: 17, lineHeight: 1.7, maxWidth: 520, marginTop: 36, fontWeight: 300, fontFamily: 'var(--font-sans)' }}>
+              {t('heroSubtitle')}
+            </p>
+            <div style={{ display: 'flex', gap: 32, alignItems: 'center', marginTop: 44 }}>
+              <Link
+                href="/shop"
+                style={{ color: '#fff', fontSize: 12, letterSpacing: '.24em', textTransform: 'uppercase', textDecoration: 'none', borderBottom: '1px solid rgba(255,255,255,.6)', paddingBottom: 6, fontFamily: 'var(--font-sans)' }}
+              >
+                {t('heroCtaPrimary')}
+              </Link>
+              <Link
+                href="/custom"
+                style={{ color: 'rgba(255,255,255,.7)', fontSize: 12, letterSpacing: '.24em', textTransform: 'uppercase', textDecoration: 'none', fontFamily: 'var(--font-sans)' }}
+              >
+                {t('heroCtaSecondary')}
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Trust Logos */}
+      {/* ── TRUST LOGOS ──────────────────────────────────────────────── */}
       <TrustLogos />
 
-      {/* Featured Categories */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4 text-gray-900">
-              {t('categoriesTitle')}
-            </h2>
-            <p className="text-gray-600 max-w-xl mx-auto">
-              {t('categoriesSubtitle')}
+      {/* ── CATEGORY GRID ────────────────────────────────────────────── */}
+      <section style={{ padding: '140px 40px 120px', background: 'var(--bg-warm, #fafaf7)' }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+          {/* Header row */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', alignItems: 'end', marginBottom: 64, gap: 40 }}>
+            <div>
+              <div style={{ fontSize: 11, letterSpacing: '.34em', textTransform: 'uppercase', color: 'var(--fg-3)', marginBottom: 18, fontFamily: 'var(--font-sans)' }}>
+                {t('categoriesEyebrow')}
+              </div>
+              <h2 style={{ fontFamily: 'var(--font-serif)', fontWeight: 400, fontSize: 'clamp(40px, 5vw, 68px)', lineHeight: 1.05, margin: 0, color: 'var(--fg-1)', letterSpacing: '-.015em' }}>
+                {t('categoriesTitleLine1')}<br /><em style={{ fontWeight: 400 }}>{t('categoriesTitleLine2')}</em>
+              </h2>
+            </div>
+            <p style={{ color: 'var(--fg-2)', fontSize: 17, lineHeight: 1.75, fontWeight: 300, maxWidth: 460, justifySelf: 'end', fontFamily: 'var(--font-sans)', margin: 0 }}>
+              {t('categoriesIntro')}
             </p>
-            <div className="w-24 h-1 bg-primary mx-auto rounded-full mt-6" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {categories.map((category) => (
-              <Link 
-                key={category.slug} 
-                href={`/collections/${category.slug}`}
-                className="group relative overflow-hidden rounded shadow-md"
+          {/* 3-column grid */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 4 }}>
+            {categories.map((cat, idx) => (
+              <Link
+                key={cat.slug}
+                href={`/collections/${cat.slug}`}
+                style={{
+                  gridColumn: cat.span2 ? 'span 2' : undefined,
+                  position: 'relative',
+                  overflow: 'hidden',
+                  display: 'block',
+                  aspectRatio: cat.span2 ? '16/9' : '4/5',
+                  textDecoration: 'none',
+                }}
+                className="category-tile"
               >
-                <div 
-                  className="h-80 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                  style={{ backgroundImage: `url("${category.img}")` }}
+                <Image
+                  src={cat.img}
+                  alt={cat.name}
+                  fill
+                  className="object-cover category-tile-img"
+                  sizes={cat.span2 ? '(max-width:768px) 100vw, 67vw' : '(max-width:768px) 100vw, 33vw'}
+                  loading={idx === 0 ? 'eager' : 'lazy'}
                 />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300" />
-                <div className="absolute bottom-0 left-0 p-6 w-full bg-gradient-to-t from-black/80 to-transparent">
-                  <h3 className="text-white text-2xl font-serif">{category.name}</h3>
-                  <span className="text-primary-300 text-sm uppercase tracking-wider font-semibold mt-2 inline-block opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
-                    {t('shopNow')} →
-                  </span>
+                {/* overlay gradient */}
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(0deg, rgba(0,0,0,.52) 0%, transparent 55%)', transition: 'background 400ms' }} />
+                {/* label */}
+                <div style={{ position: 'absolute', left: 28, right: 28, bottom: 28, color: '#fff' }}>
+                  <div style={{ fontSize: 10, letterSpacing: '.28em', textTransform: 'uppercase', color: 'rgba(255,255,255,.75)', marginBottom: 10, fontFamily: 'var(--font-sans)' }}>
+                    {cat.sub}
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+                    <h3 style={{ fontFamily: 'var(--font-serif)', fontWeight: 400, fontSize: 36, margin: 0, letterSpacing: '-.01em' }}>
+                      {cat.name}
+                    </h3>
+                    <span style={{ fontSize: 11, letterSpacing: '.22em', textTransform: 'uppercase', borderBottom: '1px solid rgba(255,255,255,.7)', paddingBottom: 4, fontFamily: 'var(--font-sans)' }}>
+                      {t('categoryExplore')}
+                    </span>
+                  </div>
                 </div>
               </Link>
             ))}
           </div>
 
-          <div className="text-center mt-12">
+          <div style={{ textAlign: 'center', marginTop: 72 }}>
             <Link
               href="/collections"
-              className="inline-block border-2 border-gray-900 text-gray-900 px-8 py-3 rounded hover:bg-gray-900 hover:text-white transition-colors font-medium"
+              style={{ fontSize: 12, letterSpacing: '.26em', textTransform: 'uppercase', color: 'var(--fg-1)', textDecoration: 'none', borderBottom: '1px solid var(--fg-1)', paddingBottom: 6, fontFamily: 'var(--font-sans)' }}
             >
-              {t('viewAll')}
+              {t('categoriesCta')}
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 text-gray-900">
-                {t('whyTitle')}
-              </h2>
-              <p className="text-gray-600 mb-8 leading-relaxed">
-                {t('whyDescription')}
-              </p>
-
-              <div className="grid grid-cols-2 gap-6">
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-primary">✋</span>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-gray-900">{t('handmade')}</h3>
-                    <p className="text-sm text-gray-500">{t('handmadeDesc')}</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-primary">🏔️</span>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-gray-900">{t('authentic')}</h3>
-                    <p className="text-sm text-gray-500">{t('authenticDesc')}</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-primary">🤝</span>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-gray-900">{t('fairTrade')}</h3>
-                    <p className="text-sm text-gray-500">{t('fairTradeDesc')}</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-primary">🌿</span>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-gray-900">{t('natural')}</h3>
-                    <p className="text-sm text-gray-500">{t('naturalDesc')}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="relative aspect-square rounded overflow-hidden">
+      {/* ── WHY CHOOSE — portrait + quote + list ─────────────────────── */}
+      <section style={{ padding: '160px 40px', background: '#fff' }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto', display: 'grid', gridTemplateColumns: '1.05fr 1fr', gap: 96, alignItems: 'center' }}>
+          {/* Portrait side */}
+          <div style={{ position: 'relative' }}>
+            <div style={{ position: 'relative', aspectRatio: '4/5', overflow: 'hidden' }}>
               <Image
                 src="https://admin.moroccan-carpet.com/wp-content/uploads/2025/07/011-1-1120x800-1.jpg"
-                alt="Moroccan artisan"
+                alt={t('whyQuoteAuthor')}
                 fill
                 className="object-cover"
                 loading="lazy"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
+            {/* Quote card */}
+            <div style={{ position: 'absolute', left: -28, bottom: -28, background: 'var(--bg-warm, #fafaf7)', padding: '24px 32px', maxWidth: 280, borderLeft: '1px solid var(--primary)' }}>
+              <div style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 18, lineHeight: 1.5, color: 'var(--fg-1)' }}>
+                &ldquo;{t('whyQuote')}&rdquo;
+              </div>
+              <div style={{ fontSize: 10, letterSpacing: '.26em', textTransform: 'uppercase', color: 'var(--fg-3)', marginTop: 14, fontFamily: 'var(--font-sans)' }}>
+                {t('whyQuoteAuthor')}
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
 
-      {/* Custom Design CTA */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="bg-gray-900 text-white rounded-lg overflow-hidden">
-            <div className="grid md:grid-cols-2">
-              <div className="p-10 md:p-14">
-                <span className="text-primary text-sm font-medium uppercase tracking-wider">
-                  {t('forDesigners')}
-                </span>
-                <h2 className="text-3xl md:text-4xl font-serif font-bold mt-3 mb-6">
-                  {t('customTitle')}
-                </h2>
-                <p className="text-gray-300 mb-8">
-                  {t('customDescription')}
-                </p>
-                <ul className="space-y-3 text-gray-300 mb-8">
-                  <li className="flex items-center gap-2">
-                    <span className="text-primary">✓</span> {t('customSize')}
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-primary">✓</span> {t('colorMatch')}
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-primary">✓</span> {t('tradePricing')}
-                  </li>
-                </ul>
-                <a
-                  href="mailto:Contact@weberber.com?subject=Custom%20Design%20Inquiry"
-                  className="inline-block bg-primary text-white px-6 py-3 rounded hover:bg-primary-600 transition-colors font-medium"
+          {/* Copy side */}
+          <div>
+            <div style={{ fontSize: 11, letterSpacing: '.34em', textTransform: 'uppercase', color: 'var(--primary)', marginBottom: 22, fontFamily: 'var(--font-sans)' }}>
+              {t('whyEyebrow')}
+            </div>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontWeight: 400, fontSize: 'clamp(40px, 4.5vw, 60px)', lineHeight: 1.08, margin: '0 0 32px', color: 'var(--fg-1)', letterSpacing: '-.015em' }}>
+              {t('whyTitleLine1')}<br /><em style={{ fontWeight: 400 }}>{t('whyTitleLine2')}</em>
+            </h2>
+            <p style={{ fontSize: 17, lineHeight: 1.8, color: 'var(--fg-2)', fontWeight: 300, marginBottom: 48, fontFamily: 'var(--font-sans)' }}>
+              {t('whyDescription')}
+            </p>
+            <div>
+              {features.map((f, i) => (
+                <div
+                  key={f.num}
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: '60px 1fr',
+                    gap: 28,
+                    padding: '24px 0',
+                    borderTop: '1px solid rgba(0,0,0,.08)',
+                    borderBottom: i === features.length - 1 ? '1px solid rgba(0,0,0,.08)' : 'none',
+                  }}
                 >
-                  {t('inquire')}
-                </a>
-              </div>
-              <div className="relative min-h-[300px] md:min-h-0">
-                <Image
-                  src="https://admin.moroccan-carpet.com/wp-content/uploads/2025/07/DSC_7333-1-1120x800-1.jpg"
-                  alt="Custom design"
-                  fill
-                  className="object-cover"
-                  loading="lazy"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
+                  <div style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 18, color: 'var(--primary)' }}>
+                    {f.num}
+                  </div>
+                  <div>
+                    <div style={{ fontSize: 16, fontWeight: 500, color: 'var(--fg-1)', marginBottom: 4, fontFamily: 'var(--font-sans)' }}>{f.title}</div>
+                    <div style={{ fontSize: 14, color: 'var(--fg-2)', fontWeight: 300, lineHeight: 1.6, fontFamily: 'var(--font-sans)' }}>{f.desc}</div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Reviews */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4 text-gray-900">
+      {/* ── EDITORIAL SPREAD (Custom CTA) ─────────────────────────────── */}
+      <section style={{ background: 'var(--bg-warm, #fafaf7)', padding: '0 0' }}>
+        <div style={{ maxWidth: '100%', display: 'grid', gridTemplateColumns: '5fr 4fr', alignItems: 'stretch' }}>
+          <div style={{ position: 'relative', minHeight: 560 }}>
+            <Image
+              src="https://admin.moroccan-carpet.com/wp-content/uploads/2025/07/DSC_7333-1-1120x800-1.jpg"
+              alt={t('customTitleLine2')}
+              fill
+              className="object-cover"
+              loading="lazy"
+              sizes="60vw"
+            />
+          </div>
+          <div style={{ background: '#1a1814', color: '#fff', padding: '80px 64px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <div>
+              <div style={{ fontSize: 11, letterSpacing: '.34em', textTransform: 'uppercase', color: 'var(--primary-300, #f4a9b6)', marginBottom: 22, fontFamily: 'var(--font-sans)' }}>
+                {t('customEyebrow')}
+              </div>
+              <h2 style={{ fontFamily: 'var(--font-serif)', fontWeight: 400, fontSize: 40, lineHeight: 1.15, margin: '0 0 24px', letterSpacing: '-.01em' }}>
+                {t('customTitleLine1')} <em>{t('customTitleLine2')}</em>
+              </h2>
+              <p style={{ fontSize: 16, lineHeight: 1.75, color: 'rgba(255,255,255,.7)', fontWeight: 300, marginTop: 0, fontFamily: 'var(--font-sans)' }}>
+                {t('customDescription')}
+              </p>
+              <ul style={{ listStyle: 'none', padding: 0, margin: '28px 0 0', display: 'grid', gap: 12 }}>
+                {[t('customBenefit1'), t('customBenefit2'), t('customBenefit3')].map((item) => (
+                  <li key={item} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', fontSize: 15, color: 'rgba(255,255,255,.8)', fontFamily: 'var(--font-sans)' }}>
+                    <span style={{ color: 'var(--primary-300, #f4a9b6)', flexShrink: 0 }}>✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginTop: 48, paddingTop: 32, borderTop: '1px solid rgba(255,255,255,.15)' }}>
+              <div style={{ fontSize: 10, letterSpacing: '.28em', textTransform: 'uppercase', color: 'rgba(255,255,255,.5)', fontFamily: 'var(--font-sans)' }}>
+                {t('customMeta')}
+              </div>
+              <a
+                href="mailto:Contact@weberber.com?subject=Custom%20Design%20Inquiry"
+                style={{ color: '#fff', fontSize: 12, letterSpacing: '.24em', textTransform: 'uppercase', textDecoration: 'none', borderBottom: '1px solid rgba(255,255,255,.7)', paddingBottom: 4, fontFamily: 'var(--font-sans)' }}
+              >
+                {t('customCta')}
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── REVIEWS ──────────────────────────────────────────────────── */}
+      <section style={{ padding: '120px 40px', background: '#fff' }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: 64 }}>
+            <div style={{ fontSize: 11, letterSpacing: '.34em', textTransform: 'uppercase', color: 'var(--fg-3)', marginBottom: 18, fontFamily: 'var(--font-sans)' }}>
+              {t('reviewsEyebrow')}
+            </div>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontWeight: 400, fontSize: 'clamp(32px, 4vw, 52px)', lineHeight: 1.1, margin: '0 auto', color: 'var(--fg-1)', maxWidth: 560 }}>
               {t('reviewsTitle')}
             </h2>
-            <p className="text-gray-600">
-              {t('reviewsSubtitle')}
-            </p>
           </div>
-          <ReviewsSlider />
+          <Suspense>
+            <ReviewsSlider />
+          </Suspense>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="relative aspect-[4/3] rounded overflow-hidden">
+      {/* ── VISIT / ATELIER ───────────────────────────────────────────── */}
+      <section style={{ padding: '160px 40px', background: 'var(--bg-warm, #fafaf7)' }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1.05fr', gap: 96, alignItems: 'center' }}>
+          {/* Copy */}
+          <div>
+            <div style={{ fontSize: 11, letterSpacing: '.34em', textTransform: 'uppercase', color: 'var(--primary)', marginBottom: 22, fontFamily: 'var(--font-sans)' }}>
+              {t('visitEyebrow')}
+            </div>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontWeight: 400, fontSize: 'clamp(40px, 4.5vw, 60px)', lineHeight: 1.08, margin: 0, letterSpacing: '-.015em', color: 'var(--fg-1)' }}>
+              {t('visitTitleLine1')}<br /><em style={{ fontWeight: 400 }}>{t('visitTitleLine2')}</em>
+            </h2>
+            <p style={{ fontSize: 17, lineHeight: 1.8, color: 'var(--fg-2)', fontWeight: 300, margin: '32px 0 48px', maxWidth: 460, fontFamily: 'var(--font-sans)' }}>
+              {t('visitDescription')}
+            </p>
+            <div style={{ display: 'grid', gap: 22, marginBottom: 48 }}>
+              {visitRows.map(([k, v]) => (
+                <div key={k} style={{ display: 'grid', gridTemplateColumns: '120px 1fr', gap: 24, paddingBottom: 18, borderBottom: '1px solid rgba(0,0,0,.08)' }}>
+                  <div style={{ fontSize: 10, letterSpacing: '.28em', textTransform: 'uppercase', color: 'var(--fg-3)', paddingTop: 4, fontFamily: 'var(--font-sans)' }}>{k}</div>
+                  <div style={{ fontFamily: 'var(--font-serif)', fontSize: 18, color: 'var(--fg-1)' }}>{v}</div>
+                </div>
+              ))}
+            </div>
+            <Link
+              href="/contact"
+              style={{ fontSize: 12, letterSpacing: '.24em', textTransform: 'uppercase', color: 'var(--fg-1)', textDecoration: 'none', borderBottom: '1px solid var(--fg-1)', paddingBottom: 6, fontFamily: 'var(--font-sans)' }}
+            >
+              {t('visitCta')}
+            </Link>
+          </div>
+
+          {/* Portrait */}
+          <div style={{ position: 'relative' }}>
+            <div style={{ position: 'relative', aspectRatio: '4/5', overflow: 'hidden' }}>
               <Image
                 src="https://admin.moroccan-carpet.com/wp-content/uploads/2025/07/DSC_2859-1-1120x800-1.jpg"
-                alt="Our workshop"
+                alt="Weberber atelier"
                 fill
                 className="object-cover"
                 loading="lazy"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
-            <div>
-              <span className="text-primary text-sm font-medium uppercase tracking-wider">
-                {t('experienceMorocco')}
-              </span>
-              <h2 className="text-3xl md:text-4xl font-serif font-bold mt-3 mb-6 text-gray-900">
-                {t('visitTitle')}
-              </h2>
-              <p className="text-gray-600 mb-8 leading-relaxed">
-                {t('visitDescription')}
-              </p>
-              <div className="bg-gray-50 rounded p-6 mb-6">
-                <h3 className="font-medium mb-4 text-gray-900">{t('getInTouch')}</h3>
-                <div className="space-y-2 text-gray-600 text-sm">
-                  <p>📧 <a href="mailto:Contact@weberber.com" className="text-primary hover:underline">Contact@weberber.com</a></p>
-                  <p>💬 <a href="https://wa.me/212624219261" className="text-primary hover:underline">+212 624 219 261</a></p>
-                  <p>📍 Atlas Mountains, Morocco</p>
-                </div>
-              </div>
-              <Link
-                href="/contact"
-                className="inline-block bg-primary text-white px-6 py-3 rounded hover:bg-primary-600 transition-colors font-medium"
-              >
-                {t('contactUs')}
-              </Link>
+            {/* postage-stamp ornament */}
+            <div style={{ position: 'absolute', top: 24, right: 24, width: 96, height: 96, border: '1px solid rgba(255,255,255,.6)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 13, lineHeight: 1.3, textAlign: 'center', padding: 8 }}>
+              Maison<br />WEBERBER<br />
+              <span style={{ fontStyle: 'normal', fontSize: 9, letterSpacing: '.22em', textTransform: 'uppercase' }}>{t('visitStampEst')}</span>
             </div>
           </div>
         </div>

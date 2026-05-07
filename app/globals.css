@@ -1,8 +1,117 @@
 @import "tailwindcss";
 
+/* =========================================================
+   WEBERBER — Design System Tokens
+   Source of truth: colors_and_type.css from the design system
+   ========================================================= */
+
 :root {
-  --background: #ffffff;
-  --foreground: #1a1a1a;
+  /* -------- Color: Surfaces -------- */
+  --background:      #ffffff;
+  --foreground:      #1a1a1a;
+  --bg:              #ffffff;
+  --bg-muted:        #fafafa;
+  --bg-soft:         #f6f6f6;
+  --bg-warm:         #fafaf7;
+  --bg-inverse:      #1a1a1a;
+  --bg-overlay:      rgba(0,0,0,0.60);
+  --bg-overlay-soft: rgba(0,0,0,0.20);
+  --bg-overlay-dark: rgba(0,0,0,0.40);
+  --bg-glass:        rgba(255,255,255,0.10);
+  --bg-glass-strong: rgba(255,255,255,0.20);
+
+  /* -------- Color: Foreground -------- */
+  --fg:              #1a1a1a;
+  --fg-1:            #111827;
+  --fg-2:            #4b5563;
+  --fg-3:            #6b7280;
+  --fg-4:            #9ca3af;
+  --fg-on-dark:      #ffffff;
+  --fg-on-dark-soft: #d1d5db;
+
+  /* -------- Color: Primary "Cherry Rose" -------- */
+  --primary:         #a4243b;
+  --primary-50:      #fdf2f4;
+  --primary-100:     #fce7ea;
+  --primary-200:     #f9d0d7;
+  --primary-300:     #f4a9b6;
+  --primary-400:     #ec7a8f;
+  --primary-500:     #df4d6a;
+  --primary-600:     #ca3354;
+  --primary-700:     #a4243b;
+  --primary-800:     #8f2238;
+  --primary-900:     #7a2035;
+  --primary-tint:    rgba(164,36,59,0.10);
+
+  /* -------- Color: Neutral / Dark scale -------- */
+  --dark:            #1a1a1a;
+  --dark-50:         #f6f6f6;
+  --dark-100:        #e7e7e7;
+  --dark-200:        #d1d1d1;
+  --dark-300:        #b0b0b0;
+  --dark-400:        #888888;
+  --dark-500:        #6d6d6d;
+  --dark-600:        #5d5d5d;
+  --dark-700:        #4f4f4f;
+  --dark-800:        #454545;
+  --dark-900:        #1a1a1a;
+
+  /* -------- Color: Borders / dividers -------- */
+  --border:          #f3f4f6;
+  --border-strong:   #e5e7eb;
+  --border-dark:     #1f2937;
+
+  /* -------- Color: Semantic accents -------- */
+  --accent-success:  #16a34a;
+  --accent-whatsapp: #25D366;
+  --accent-whatsapp-hover: #1ebe57;
+
+  /* -------- Color: Materia palette (rug swatches) -------- */
+  --mat-cream:       #F5F5DC;
+  --mat-charcoal:    #2C3539;
+  --mat-terracotta:  #E2725B;
+  --mat-atlas-blue:  #007FFF;
+  --mat-saffron:     #F4C430;
+  --mat-olive:       #808000;
+
+  /* -------- Type: families -------- */
+  --font-serif: var(--font-playfair), "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans:  var(--font-inter), "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* -------- Type: sizes -------- */
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-4xl:  2.25rem;
+  --text-5xl:  3rem;
+  --text-6xl:  3.75rem;
+
+  /* -------- Layout / spacing / shape -------- */
+  --container:    1280px;
+  --radius-sm:    4px;
+  --radius-md:    6px;
+  --radius-lg:    8px;
+  --radius-xl:    12px;
+  --radius-pill:  9999px;
+  --shadow-sm:    0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md:    0 4px 6px -1px rgb(0 0 0 / 0.10), 0 2px 4px -2px rgb(0 0 0 / 0.10);
+  --shadow-lg:    0 10px 15px -3px rgb(0 0 0 / 0.10), 0 4px 6px -4px rgb(0 0 0 / 0.10);
+
+  /* -------- Motion -------- */
+  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+  --t-fast:     150ms;
+  --t-base:     300ms;
+  --t-slow:     700ms;
+
+  /* -------- Letter-spacing -------- */
+  --tracking-tight:   -0.025em;
+  --tracking-wide:    0.025em;
+  --tracking-wider:   0.05em;
+  --tracking-widest:  0.1em;
 }
 
 @theme inline {
@@ -41,8 +150,147 @@
   --font-serif: var(--font-playfair), Georgia, serif;
 }
 
+/* =========================================================
+   Base styles
+   ========================================================= */
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.6;
+}
+
+/* =========================================================
+   Semantic typography classes (wm-* = WEBERBER Maison)
+   ========================================================= */
+
+/* Section eyebrow */
+.wm-eyebrow {
+  color: var(--primary);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+}
+
+/* Headings — Playfair, editorial */
+.wm-h1 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--fg-1);
+}
+
+.wm-h2 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: clamp(1.875rem, 3.5vw, 2.25rem);
+  line-height: 1.15;
+  color: var(--fg-1);
+}
+
+.wm-h3 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: var(--text-2xl);
+  line-height: 1.2;
+  color: var(--fg-1);
+}
+
+/* Lead paragraph */
+.wm-lead {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  color: var(--fg-on-dark-soft);
+}
+
+/* Body */
+.wm-body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--text-base);
+  line-height: 1.65;
+  color: var(--fg-2);
+}
+
+/* Nav link */
+.wm-nav {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--fg-2);
+}
+
+/* The thin red rule under section titles */
+.wm-rule {
+  display: block;
+  width: 96px;
+  height: 4px;
+  background: var(--primary);
+  border-radius: var(--radius-pill);
+  margin: 1.5rem auto 0;
+}
+
+/* =========================================================
+   Ken Burns hero animation
+   ========================================================= */
+@keyframes kenburns {
+  0%   { transform: scale(1.04) translate(0, 0); }
+  100% { transform: scale(1.12) translate(-1%, -1%); }
+}
+
+.hero-kenburns {
+  animation: kenburns 28s ease-out infinite alternate;
+}
+
+/* =========================================================
+   Category tile hover
+   ========================================================= */
+.category-tile-img {
+  transition: transform var(--t-slow) var(--ease-out);
+}
+.category-tile:hover .category-tile-img {
+  transform: scale(1.06);
+}
+
+/* =========================================================
+   WhatsApp FAB hover scale
+   ========================================================= */
+.whatsapp-fab {
+  transition: transform 200ms ease, background-color 200ms ease;
+}
+.whatsapp-fab:hover {
+  transform: scale(1.1);
+  background-color: var(--accent-whatsapp-hover);
+}
+
+/* =========================================================
+   Trust Logos
+   ========================================================= */
+.trust-logo-item {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+  filter: grayscale(1) brightness(0.6);
+  opacity: 0.55;
+  transition: filter 600ms, opacity 600ms;
+}
+.trust-logo-item:hover {
+  filter: grayscale(1) brightness(0.4);
+  opacity: 1;
 }

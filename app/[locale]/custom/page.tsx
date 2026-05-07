@@ -7,11 +7,11 @@ interface Props {
 
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'nav' });
+  const t = await getTranslations({ locale, namespace: 'custom' });
 
   return {
-    title: `Design Your Own Moroccan Rug | WEBERBER`,
-    description: 'Customize your authentic Moroccan rug. Choose patterns, colors, and sizes. Handwoven in the Atlas Mountains.',
+    title: t('metaTitle'),
+    description: t('metaDescription'),
   };
 }
 

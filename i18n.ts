@@ -9,30 +9,18 @@ export type Locale = (typeof locales)[number];
 
 // Locale labels
 export const localeLabels: Record<Locale, string> = {
-  en: 'English',
-  fr: 'Français',
   es: 'Español',
-  de: 'Deutsch',
-  ar: 'العربية',
-  ja: '日本語',
-  sv: 'Svenska',
-  fi: 'Suomi',
+  en: 'English',
 };
 
 // Locale flags (emoji)
 export const localeFlags: Record<Locale, string> = {
-  en: '🇺🇸',
-  fr: '🇫🇷',
   es: '🇪🇸',
-  de: '🇩🇪',
-  ar: '🇲🇦',
-  ja: '🇯🇵',
-  sv: '🇸🇪',
-  fi: '🇫🇮',
+  en: '🇬🇧',
 };
 
-// RTL languages
-export const rtlLocales: Locale[] = ['ar'];
+// RTL languages (none currently)
+export const rtlLocales: Locale[] = [];
 
 export function isRtl(locale: Locale): boolean {
   return rtlLocales.includes(locale);

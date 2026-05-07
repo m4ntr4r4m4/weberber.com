@@ -13,6 +13,7 @@ const socialLinks = [
 
 export default async function Footer({ locale }: FooterProps) {
   const t = await getTranslations({ locale, namespace: 'nav' });
+  const tFooter = await getTranslations({ locale, namespace: 'footer' });
 
   const footerLinks = {
     shop: [
@@ -101,8 +102,9 @@ export default async function Footer({ locale }: FooterProps) {
           <div>
             <h4 className="font-medium text-sm uppercase tracking-wider mb-6">WEBERBER</h4>
             <ul className="space-y-1 text-sm text-gray-400 mb-6">
-              <li>Madrid Malasana 28004</li>
-              <li>Spain</li>
+              <li>{tFooter('addressLine1')}</li>
+              <li>{tFooter('addressLine2')}</li>
+              <li>{tFooter('addressLine3')}</li>
               <li className="pt-1">
                 <a href="mailto:Contact@weberber.com" className="hover:text-white transition-colors">
                   Contact@weberber.com
@@ -110,11 +112,11 @@ export default async function Footer({ locale }: FooterProps) {
               </li>
             </ul>
 
-            <h4 className="font-medium text-sm uppercase tracking-wider mb-4">Workshop</h4>
+            <h4 className="font-medium text-sm uppercase tracking-wider mb-4">{t('workshop')}</h4>
             <ul className="space-y-1 text-sm text-gray-400">
-              <li>20 Rue 22 Hay Karama 2</li>
-              <li>15000, Khemisset</li>
-              <li>Morocco</li>
+              <li>{tFooter('workshopLine1')}</li>
+              <li>{tFooter('workshopLine2')}</li>
+              <li>{tFooter('workshopLine3')}</li>
             </ul>
           </div>
         </div>
@@ -124,7 +126,7 @@ export default async function Footer({ locale }: FooterProps) {
       <div className="border-t border-gray-800">
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-            <p>&copy; {new Date().getFullYear()} WEBERBER</p>
+            <p>{tFooter('copyright', { year: new Date().getFullYear() })}</p>
             <div className="flex gap-6">
               <Link href="/privacy" className="hover:text-white transition-colors">
                 {t('privacy')}

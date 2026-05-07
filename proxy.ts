@@ -5,5 +5,5 @@ export const proxy = createMiddleware(routing);
 
 export const config = {
   // Match only internationalized pathnames
-  matcher: ['/', '/(en|fr|es|de|fi|ja|ar|sv)/:path*']
+  matcher: ['/', '/(es|en)/:path*']
 };
